@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Main-Class: Main.kt
+Class-Path: atomicfu-jvm-0.16.3.jar poi-ooxml-3.17.jar bcprov-jdk15on-1.
+ 64.jar quartz-2.3.0.jar xmlbeans-2.6.0.jar log4j-api-2.15.0.jar ktor-ne
+ twork-jvm-1.5.4.jar mirai-core-jvm-2.9.2.jar stax-api-1.0.1.jar HikariC
+ P-java6-2.3.13.jar curvesapi-1.04.jar kotlin-jvm-blocking-bridge-jvm-1.
+ 10.6-1530.2.jar kotlinx-serialization-core-jvm-1.2.2.jar kotlin-stdlib-
+ jdk8-1.5.30.jar kotlinx-io-0.1.16.jar ktor-http-cio-jvm-1.5.4.jar okio-
+ jvm-2.8.0.jar kotlin-stdlib-jdk7-1.5.30.jar slf4j-api-1.7.30.jar kotlin
+ -stdlib-1.6.0.jar kotlin-stdlib-common-1.6.0.jar netty-all-4.1.63.Final
+ .jar commons-collections4-4.1.jar mirai-core-api-jvm-2.9.2.jar mchange-
+ commons-java-0.2.11.jar annotations-19.0.0.jar ktor-client-core-jvm-1.5
+ .4.jar kotlinx-serialization-json-jvm-1.2.2.jar ktor-client-okhttp-jvm-
+ 1.5.4.jar poi-3.17.jar ktor-io-jvm-1.5.4.jar ktor-utils-jvm-1.5.4.jar p
+ oi-ooxml-schemas-3.17.jar mirai-core-utils-jvm-2.9.2.jar c3p0-0.9.5.2.j
+ ar okhttp-4.9.3.jar ktor-http-jvm-1.5.4.jar kotlin-reflect-1.5.30.jar k
+ otlinx-io-jvm-0.1.16.jar kotlinx-serialization-protobuf-jvm-1.2.2.jar k
+ otlinx-coroutines-jdk8-1.5.1.jar gson-2.9.0.jar kotlinx-coroutines-core
+ -jvm-1.5.1.jar commons-codec-1.10.jar
+
