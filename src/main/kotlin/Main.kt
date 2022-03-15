@@ -12,6 +12,8 @@ import net.mamoe.mirai.BotFactory
  */
 suspend fun main() {
 
+
+    
     val bot = BotFactory.newBot(ControlCenter.botQQ, "不是真的密码别想了") {
         fileBasedDeviceInfo("resources/device.json")
     }
