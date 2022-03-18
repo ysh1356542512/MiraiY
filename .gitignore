@@ -1,0 +1,5 @@
+build/
+.gradle/
+.idea/
+resources/device.json
+src/main/kotlin/Main.kt

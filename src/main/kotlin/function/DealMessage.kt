@@ -5,11 +5,14 @@ import net.mamoe.mirai.contact.Member
 import net.mamoe.mirai.message.data.*
 import net.mamoe.mirai.utils.ExternalResource.Companion.toExternalResource
 import ControlCenter
+import ControlCenter.masterQQ
 import ControlCenter.noticeGroup
+import bean.CardStudentBean
 import bean.StudentBean
+import checkCard
 import checkCheckInToday
+import clockIn
 import java.io.File
-import java.lang.Exception
 
 /**
  * @Date : 2022/1/19   15:41
@@ -175,7 +178,15 @@ object DealMessage {
         for (stu in students) {
             if (!stu.isTodayChecked) {
                 try {
-                    val result = checkCheckInToday(stu.studentNum)
+                    var result = true
+                    when(ControlCenter.detectMode){
+                        0 -> {
+                            result = checkCheckInToday(stu.studentNum)
+                        }
+                        1 -> {
+                            result = checkCard(stu.studentNum)
+                        }
+                    }
                     println("${stu.name} 今日是否打卡: $result")
                     if (result) {
                         stu.isTodayChecked = true
@@ -193,18 +204,21 @@ object DealMessage {
                             ControlCenter.noticeGroup[0] ->{
                                 messageBuilder.add(PlainText("@${stu.name} "))
                             }
-                        }
-                        if (ControlCenter.bot.getGroup(groupID)?.get(stu.qq.toLong()) != null) {
-//                            ControlCenter.bot.getGroup(groupID)?.getOrFail(stu.qq.toLong())?.sendMessage("请及时完成打卡")
-                        }else{
-                            println("${stu.name}不在群$groupID 中")
-//                            ControlCenter.bot.getFriend(ControlCenter.masterQQ[0])?.sendMessage("${stu.name}不在群$groupID 中")
+                            ControlCenter.noticeGroup[2] ->{
+                                messageBuilder.add(PlainText("@${stu.name}"))
+                            }
                         }
 //                        messageBuilder.add(At(stu.qqNum.toLong()))
                         classOne = true
                     }
                 } catch (e: Exception) {
-                    ControlCenter.bot.getFriend(1356542512L)?.sendMessage(e.message.toString())
+                    if (e.message.toString().startsWith("com.google.gson.stream")) {
+                        //使用另一个接口去检测
+                        ControlCenter.detectMode = 1
+                        //再次检测
+                        checkGroupCard(students,groupID)
+                    }
+                    ControlCenter.bot.getFriend(masterQQ[0])?.sendMessage("we重邮接口炸啦")
                     return
                 }
             }
@@ -213,14 +227,39 @@ object DealMessage {
             ControlCenter.bot.getGroup(groupID)?.sendMessage(messageBuilder.toMessageChain())
         }else{
             ControlCenter.bot.getGroup(groupID)?.sendMessage("所有人已打卡")
-            if (groupID == ControlCenter.noticeGroup[0]) {
-                ControlCenter.isLiuFinished = true
-            }else{
-                ControlCenter.isDingFinished = true
+            when(groupID){
+                ControlCenter.noticeGroup[0] -> {
+                    ControlCenter.isLiuFinished = true
+                }
+                ControlCenter.noticeGroup[1] -> {
+                    ControlCenter.isDingFinished = true
+                }
+                ControlCenter.noticeGroup[2] -> {
+                    ControlCenter.isTaoFinished = true
+                }
+
             }
 
         }
+    }
+    suspend fun clockGroupCard(students: List<CardStudentBean>) {
+        if (!ControlCenter.isClock) {
+            println("消息推送处于关闭状态")
+            return
+        }
+        for (stu in students) {
+            try {
+                clockIn(stu)
+            } catch (e: Exception) {
+                ControlCenter.bot.getFriend(masterQQ[0])?.sendMessage("we重邮接口炸啦")
+                return
+            }
+        }
+        ControlCenter.isCardTodayFinished = true
+    }
 
-
+    fun addCardStudent( name: String, xh: String, xb: String,openId: String, xxdz: String) {
+        ControlCenter.studentsCard.add(CardStudentBean(name, xh, xb, openId, xxdz))
     }
 }
+

@@ -19,3 +19,12 @@ data class Data(
     var szdq: String? = null,
     var xxdz: String? = null
 )
+data class WeCard(
+    var `data`: Data ?= null,
+    var message: String? = null,
+    var status: Int
+){
+    data class Data(
+        var count:String?=null
+    )
+}

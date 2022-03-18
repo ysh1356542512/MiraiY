@@ -1,3 +1,4 @@
+import bean.CardStudentBean
 import function.DealMessage
 import net.mamoe.mirai.contact.MemberPermission
 import net.mamoe.mirai.event.GlobalEventChannel
@@ -6,7 +7,7 @@ import net.mamoe.mirai.message.action.Nudge.Companion.sendNudge
 import net.mamoe.mirai.message.data.At
 import net.mamoe.mirai.message.data.PlainText
 import net.mamoe.mirai.utils.ExternalResource.Companion.toExternalResource
-import org.example.mirai.plugin.function.ControlMessage
+import function.ControlMessage
 import util.ExcelReader
 import java.io.File
 
@@ -16,8 +17,11 @@ object PluginMain {
             //配置文件目录 "${dataFolder.absolutePath}/"
             val classLiuFilePath = "resources/classExcel/stu_liu.xlsx"
             val classDingFilePath = "resources/classExcel/stu_ding.xlsx"
+            val classTaoFilePath = "resources/classExcel/stu_tao.xlsx"
             ControlCenter.studentsLiu = ExcelReader.readStudentExcel(File(classLiuFilePath))
             ControlCenter.studentsDing = ExcelReader.readStudentExcel(File(classDingFilePath))
+            ControlCenter.studentTao = ExcelReader.readStudentExcel(File(classTaoFilePath))
+
 
             //同意添加好友
             //todo 加判断是否是在群中添加的好友

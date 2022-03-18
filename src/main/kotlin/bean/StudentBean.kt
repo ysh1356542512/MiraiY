@@ -15,3 +15,10 @@ data class StudentBean(
 ) {
     var isTodayChecked = false // 今日是否打卡，若今日已打则当天下次检测直接跳过
 }
+data class CardStudentBean(
+    val name: String,
+    val xh: String,
+    val xb: String,
+    val openId: String,
+    val xxdz: String
+    )
