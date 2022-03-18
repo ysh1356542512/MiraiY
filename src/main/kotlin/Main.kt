@@ -21,7 +21,7 @@ suspend fun main() {
 
 
     ControlCenter.bot = bot
-    
+
     bot.login()
     PluginMain.onEnable()
 
