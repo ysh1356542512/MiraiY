@@ -39,7 +39,9 @@ object ControlMessage {
                                 "\n打卡未完成涛 ->设置涛哥部队未完成"+
                                 "\nmode0 -> 切换检测mode为0"+
                                 "\nmode1 -> 切换检测mode为1"+
-                                "\ncard名单 -> 显示自动打卡名单"
+                                "\ncard名单 -> 显示自动打卡名单"+
+                                "\n关闭打卡 -> 关闭自动打卡"+
+                                "\n开启打卡 -> 开启自动打卡"
                     )
                 }
                 "开启推送" -> {
@@ -75,6 +77,7 @@ object ControlMessage {
                 "状态" -> {
                     event.subject.sendMessage(
                         "推送状态 -> ${ControlCenter.isSendMessage}" +
+                                "自动打卡状态 -> ${ControlCenter.isClock}"+
                                 "\n丁打卡状态 -> ${ControlCenter.isDingFinished}"+
                                 "\n刘打卡状态 -> ${ControlCenter.isLiuFinished}"+
                                 "\n涛打卡状态 -> ${ControlCenter.isTaoFinished}"+
@@ -119,6 +122,14 @@ object ControlMessage {
                             "\n学号：${ControlCenter.studentsCard[index].xh}" +
                             "\n性别：${ControlCenter.studentsCard[index].xb}" +
                             "\n地址：${ControlCenter.studentsCard[index].xxdz}")
+                }
+                "关闭打卡" ->{
+                    ControlCenter.isClock = false
+                    event.subject.sendMessage("自动打卡状态切换为${ControlCenter.isClock}")
+                }
+                "开启打卡" ->{
+                    ControlCenter.isClock = true
+                    event.subject.sendMessage("自动打卡状态切换为${ControlCenter.isClock}")
                 }
             }
         } else {

@@ -111,8 +111,8 @@ fun clockIn(student: CardStudentBean) {
                 addProperty("szdq","重庆市,重庆市,南岸区")
                 addProperty("locationBig","中国,重庆市,重庆市,南岸区")
                 addProperty("locationSmall","重庆市南岸区崇文路")
-                addProperty("latitude",29.534128)
-                addProperty("longitude",106.606291)
+                addProperty("latitude",29.534001+Math.random()*0.001)
+                addProperty("longitude",106.597001+Math.random()*0.060012)
             }
         }
         addProperty("ywjcqzbl","低风险")
@@ -121,6 +121,7 @@ fun clockIn(student: CardStudentBean) {
         addProperty("twsfzc","是")
         addProperty("ywytdzz","无")
         addProperty("beizhu","无")
+        addProperty("jkmresult","绿色")
 //        addProperty("mrdkkey",)
         addProperty("timestamp",Date().time / 1000)
 
