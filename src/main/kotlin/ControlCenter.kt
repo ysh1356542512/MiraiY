@@ -23,6 +23,7 @@ object ControlCenter {
     val masterQQ = listOf<Long>(1356542512L)
     //    val botQQ = 3327552169L
     val botQQ = 1140592853L
+//    val botQQ = 3449785723L
 
     /**
      * 检测打卡部分
